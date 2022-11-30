@@ -34,7 +34,9 @@ def new_topic(request):
         # POST data submitted; process data.
         form = TopicForm(data=request.POST)
         if form.is_valid():
-            form.save()
+            new_topic = form.save(commit=False)
+            new_topic.owner = request.user
+            new_topic.save()
             return redirect('epic_chat_room:topics')
 
     # Display a blank or invalid form.
@@ -54,6 +56,7 @@ def new_reply(request, topic_id):
         form = ReplyForm(data=request.POST)
         if form.is_valid():
             new_reply = form.save(commit=False)
+            new_reply.owner = request.user
             new_reply.topic = topic
             new_reply.save()
             return redirect('epic_chat_room:topic', topic_id=topic_id)
