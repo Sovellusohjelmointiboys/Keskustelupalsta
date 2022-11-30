@@ -11,8 +11,9 @@
 
 {% for reply in replies %}
   <div class="card mb-3">
-    <h4 class="card-header">
-      {{ reply.date_added|date:'M d, Y H:i' }}
+    <h4 class="card-header mr-auto">
+      {{  reply.owner }}
+      {{  reply.date_added|date:'M d, Y H:i' }}
       <small><a href="{% url 'epic_chat_room:edit_reply' reply.id %}">
           edit reply</a></small>
     </h4>
