@@ -1,25 +1,27 @@
-{% extends 'epic_chat_room/base.html' %}
+{% extends "epic_chat_room/base.html" %}
+
+{% block page_header %}
+  <h3>{{ topic }}</h3>
+{% endblock page_header %}
+
 {% block content %}
+  <p>
+    <a href="{% url 'epic_chat_room:new_reply' topic.id %}">Add new reply</a>
+  </p>
 
-    <p>Topic: {{ topic }}</p>
-
-    <p>Entries:</p>
-    <p>
-        <a href="{% url 'epic_chat_room:new_reply' topic.id %}">Add new reply</a>
-    </p>
-
-    <ul>
-    {% for reply in replies %}
-        <li>
-            <p>{{ reply.date_added|date:'M d, Y H:i' }}</p>
-            <p>{{ reply.text|linebreaks }}</p>
-            <p>
-                <a href="{% url 'epic_chat_room:edit_reply' reply.id %}">Edit reply</a>
-            </p>
-        </li>
-    {% empty %}
-        <li>There are no replies for this topic yet.</li>
-    {% endfor %}
-    </ul>
+{% for reply in replies %}
+  <div class="card mb-3">
+    <h4 class="card-header">
+      {{ reply.date_added|date:'M d, Y H:i' }}
+      <small><a href="{% url 'epic_chat_room:edit_reply' reply.id %}">
+          edit reply</a></small>
+    </h4>
+    <div class="card-body">
+        {{ reply }}
+      </div>
+    </div>
+  {% empty %}
+    <li>No replies have been added yet.</li>
+  {% endfor %}
 
 {% endblock content %}

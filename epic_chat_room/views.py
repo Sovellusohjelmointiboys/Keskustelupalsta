@@ -1,12 +1,15 @@
 from django.shortcuts import render, redirect
 from .models import Topic, Reply
 from .forms import TopicForm, ReplyForm
+from django.contrib.auth.decorators import login_required
+from django.http import Http404
 
 # Create your views here.
 
 def index(request):
     # The home page for epic chat room
     return render(request, 'epic_chat_room/index.html')
+
 
 def topics(request):
     # Show all topics
@@ -21,6 +24,7 @@ def topic(request, topic_id):
     context = {'topic': topic, 'replies': replies}
     return render(request, 'epic_chat_room/topic.html', context)
 
+@login_required
 def new_topic(request):
     #Add a new topic
     if request.method != 'POST':
@@ -37,6 +41,7 @@ def new_topic(request):
     context = {'form': form}
     return render(request, 'epic_chat_room/new_topic.html', context)
 
+@login_required
 def new_reply(request, topic_id):
     #Add a new reply for a particular topic
     topic = Topic.objects.get(id=topic_id)
@@ -57,10 +62,14 @@ def new_reply(request, topic_id):
     context = {'topic': topic, 'form': form}
     return render(request, 'epic_chat_room/new_reply.html', context)
 
+@login_required
 def edit_reply(request, reply_id):
     # Edit an existing reply
     reply = Reply.objects.get(id=reply_id)
     topic = reply.topic
+    # Make sure the topic belongs to the current user.
+    if topic.owner != request.user:
+        raise Http404
 
     if request.method != 'POST':
         # Initial request; pre-fill form with the current entry.

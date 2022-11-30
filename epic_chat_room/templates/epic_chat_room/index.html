@@ -1,6 +1,12 @@
 {% extends "epic_chat_room/base.html" %}
 
-{% block content %}
-<p>Epic Chat Room is a place to chat with other epic people!</p>
+{% block page_header %}
+    <div class="jumbotron">
+        <h1 class="display-3">Epic Chat Room is a place to chat with other epic people!</h1>
 
-{% endblock content %}
+        <p class="lead">Start new topic or reply to existing topics</p>
+
+        <a class="btn btn-lg btn-primary" href="{% url 'users:register' %}"
+            role="button">Register &raquo;</a>
+    </div>
+{% endblock page_header %}
