@@ -10,6 +10,7 @@
     {% for topic in topics %}
       <li><h3>
         <a href="{% url 'epic_chat_room:topic' topic.id %}">{{ topic }}</a>
+        <p style="font-size: medium;">Topic started by:{{ topic.owner }}</p>
       </h3></li>
     {% empty %}
       <li><h3>No topics have been added yet.</h3></li>

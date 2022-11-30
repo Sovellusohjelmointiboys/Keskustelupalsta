@@ -9,7 +9,7 @@ class Topic(models.Model):
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.title
+        return f"{self.title}"
 
 class Reply(models.Model):
     # Reply to a specific topic
