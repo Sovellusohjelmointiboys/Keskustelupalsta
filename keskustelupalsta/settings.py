@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     #My apps
     'epic_chat_room',
+    'users',
 
     #Default django apps
     'django.contrib.admin',

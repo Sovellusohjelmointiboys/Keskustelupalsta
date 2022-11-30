@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Topic
+from .models import Topic, Reply
 from .forms import TopicForm, ReplyForm
 
 # Create your views here.
@@ -56,3 +56,21 @@ def new_reply(request, topic_id):
     # Display a blank or invalid form.
     context = {'topic': topic, 'form': form}
     return render(request, 'epic_chat_room/new_reply.html', context)
+
+def edit_reply(request, reply_id):
+    # Edit an existing reply
+    reply = Reply.objects.get(id=reply_id)
+    topic = reply.topic
+
+    if request.method != 'POST':
+        # Initial request; pre-fill form with the current entry.
+        form = ReplyForm(instance=reply)
+    else:
+        # POST data submitted; process data.
+        form = ReplyForm(instance=reply, data=request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('epic_chat_room:topic', topic_id=topic.id)
+
+    context = {'reply': reply, 'topic': topic, 'form': form}
+    return render(request, 'epic_chat_room/edit_reply.html', context)

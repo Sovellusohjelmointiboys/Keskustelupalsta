@@ -13,6 +13,9 @@
         <li>
             <p>{{ reply.date_added|date:'M d, Y H:i' }}</p>
             <p>{{ reply.text|linebreaks }}</p>
+            <p>
+                <a href="{% url 'epic_chat_room:edit_reply' reply.id %}">Edit reply</a>
+            </p>
         </li>
     {% empty %}
         <li>There are no replies for this topic yet.</li>
