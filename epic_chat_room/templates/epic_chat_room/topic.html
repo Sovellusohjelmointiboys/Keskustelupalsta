@@ -1,0 +1,18 @@
+{% extends 'epic_chat_room/base.html' %}
+{% block content %}
+
+    <p>Topic: {{ topic }}</p>
+
+    <p>Entries:</p>
+    <ul>
+    {% for reply in replies %}
+        <li>
+            <p>{{ reply.date_added|date:'M d, Y H:i' }}</p>
+            <p>{{ reply.text|linebreaks }}</p>
+        </li>
+    {% empty %}
+        <li>There are no replies for this topic yet.</li>
+    {% endfor %}
+    </ul>
+
+{% endblock content %}
