@@ -4,6 +4,10 @@
     <p>Topic: {{ topic }}</p>
 
     <p>Entries:</p>
+    <p>
+        <a href="{% url 'epic_chat_room:new_reply' topic.id %}">Add new reply</a>
+    </p>
+
     <ul>
     {% for reply in replies %}
         <li>

@@ -1,0 +1,14 @@
+{% extends "epic_chat_room/base.html" %}
+
+{% block content %}
+
+    <p><a href="{% url 'epic_chat_room:topic' topic.id %}">{{ topic }}</a></p>
+
+    <p>Add a new reply:</p>
+    <form action="{% url 'epic_chat_room:new_reply' topic.id %}" method='post'>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button name='submit'>Add reply</button>
+    </form>
+
+{% endblock content %}
