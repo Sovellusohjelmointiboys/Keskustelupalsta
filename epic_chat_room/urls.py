@@ -19,4 +19,6 @@ urlpatterns = [
     path('edit_reply/<int:reply_id>/', views.edit_reply, name='edit_reply'),
     # Page for deleting an entry.
     path('delete_reply/<int:reply_id>/', views.delete_reply, name='delete_reply'),
+    # Page for deleting a topic.
+    path('delete_topic/<int:topic_id>/', views.delete_topic, name='delete_topic'),
 ]
