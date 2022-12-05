@@ -12,4 +12,8 @@
         <button name="submit">Save changes</button>
     </form>
 
+    <button>
+        <a href="{% url 'epic_chat_room:delete_reply' reply.id %}">Delete</a>
+    </button>
+
 {% endblock content %}

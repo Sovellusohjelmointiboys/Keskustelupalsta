@@ -56,6 +56,7 @@ def new_reply(request, topic_id):
         form = ReplyForm(data=request.POST)
         if form.is_valid():
             new_reply = form.save(commit=False)
+            new_reply.owner = request.user
             new_reply.topic = topic
             new_reply.owner = request.user
             new_reply.save()
@@ -71,7 +72,7 @@ def edit_reply(request, reply_id):
     reply = Reply.objects.get(id=reply_id)
     topic = reply.topic
     # Make sure the topic belongs to the current user.
-    if topic.owner != request.user:
+    if reply.owner != request.user:
         raise Http404
 
     if request.method != 'POST':
@@ -86,3 +87,17 @@ def edit_reply(request, reply_id):
 
     context = {'reply': reply, 'topic': topic, 'form': form}
     return render(request, 'epic_chat_room/edit_reply.html', context)
+
+@login_required
+def delete_reply(request, reply_id):
+    reply = Reply.objects.get(id=reply_id)
+    topic = reply.topic
+    if reply.owner != request.user:
+        raise Http404
+
+    if request.method != 'POST':
+        reply.delete()
+        return redirect('epic_chat_room:topic', topic_id=topic.id)
+
+    context = {}
+    return render(request, 'epic_chat_room/delete_reply.html', context)
