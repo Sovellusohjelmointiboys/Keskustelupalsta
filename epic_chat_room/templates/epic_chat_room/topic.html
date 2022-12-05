@@ -9,23 +9,23 @@
     {{topic.text}}
   </p>
 
-  <button>
+  <button style="background-color:#FED8B4; -webkit-text-fill-color: #880202">
     <a href="{% url 'epic_chat_room:delete_topic' topic.id %}">Delete topic</a>
   </button>
 
-  <button>
+  <button style="background-color:#FED8B4; -webkit-text-fill-color: #880202">
     <a href="{% url 'epic_chat_room:new_reply' topic.id %}">Add new reply</a>
   </button>
   <br>
   <br>
 
 {% for reply in replies %}
-  <div class="card mb-3">
-    <h4 class="card-header" style="font-size: medium;">
+  <div class="card mb-3" style="background-color:#FED8B4">
+    <h4 class="card-header" style="font-size: medium; -webkit-text-fill-color: #880202"">
       {{  reply.owner }}
       {{  reply.date_added|date:'M d, Y H:i' }}
       <small><a href="{% url 'epic_chat_room:edit_reply' reply.id %}">
-          edit reply</a></small>
+          Edit reply</a></small>
     </h4>
     <div class="card-body">
         {{ reply }}

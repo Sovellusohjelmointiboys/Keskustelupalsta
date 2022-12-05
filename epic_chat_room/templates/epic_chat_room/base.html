@@ -5,15 +5,15 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1,
-    shrink-to-fit=no">
+    shrink-to-fit=no" >
 <title>Epic Chat Room</title>
 
   {% bootstrap_css %}
   {% bootstrap_javascript jquery='full' %}
 
 </head>
-<body>
-  <nav class="navbar navbar-expand-md navbar-light bg-light mb-4 border">
+<body style="background-color: #fff4eb">
+  <nav class="navbar navbar-expand-md navbar-light mb-4 border" style="background-color:#FED8B4">
     <a class="navbar-brand" href="{% url 'epic_chat_room:index'%}">
        Epic Chat Room</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -23,13 +23,13 @@
     <div class="collapse navbar-collapse" id="navbarCollapse">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'epic_chat_room:topics'%}">
+          <a class="nav-link" href="{% url 'epic_chat_room:topics'%}" style="-webkit-text-fill-color: #880202">
               Topics</a></li>
       </ul>
       <ul class="navbar-nav ml-auto">
         {% if user.is_authenticated %}
           <li class="nav-item">
-            <span class="navbar-text"}">Hello, {{ user.username }}.</span>
+            <span class="navbar-text"}>Hello, {{ user.username }}.</span>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="{% url 'users:logout' %}">Log out</a>
