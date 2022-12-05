@@ -1,0 +1,14 @@
+{% extends "epic_chat_room/base.html" %}
+
+{% block content %}
+
+{% if reply %}
+<form method="POST" action=".">
+    {% csrf_token %}
+    <p>Are you sure you want to delete {{reply}}</p>
+    <button type="submit">Yes, delete</button>
+</form>
+    
+{% end if %}
+
+{% endblock content %}
