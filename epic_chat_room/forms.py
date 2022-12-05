@@ -5,7 +5,7 @@ class TopicForm(forms.ModelForm):
     class Meta:
         model = Topic
         fields = ['title', 'text']
-        labels = {'title': 'Title'}
+        labels = {'title': 'title'}
         widgets = {'text': forms.Textarea(attrs={'cols': 80})}
 
 class ReplyForm(forms.ModelForm):

@@ -5,19 +5,14 @@
 {% endblock page_header %}
 
 {% block content %}
+
   <p>
     {{topic.text}}
   </p>
 
-  <button>
-    <a href="{% url 'epic_chat_room:delete_topic' topic.id %}">Delete topic</a>
-  </button>
-
-  <button>
+  <p>
     <a href="{% url 'epic_chat_room:new_reply' topic.id %}">Add new reply</a>
-  </button>
-  <br>
-  <br>
+  </p>
 
 {% for reply in replies %}
   <div class="card mb-3">
@@ -34,7 +29,5 @@
   {% empty %}
     <li>No replies have been added yet.</li>
   {% endfor %}
-
-  
 
 {% endblock content %}

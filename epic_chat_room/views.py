@@ -101,16 +101,3 @@ def delete_reply(request, reply_id):
 
     context = {}
     return render(request, 'epic_chat_room/delete_reply.html', context)
-
-@login_required
-def delete_topic(request, topic_id):
-    topic = Topic.objects.get(id=topic_id)
-    if topic.owner != request.user:
-        raise Http404
-
-    if request.method != 'POST':
-        topic.delete()
-        return redirect('epic_chat_room:topics')
-
-    context = {}
-    return render(request, 'epic_chat_room/delete_topic.html', context)
