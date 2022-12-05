@@ -2,13 +2,12 @@
 
 {% block content %}
 
-    <p><a href="{% url 'epic_chat_room:topic' topic.id %}">{{ topic }}</a></p>
 
     <p>Add a new reply:</p>
     <form action="{% url 'epic_chat_room:new_reply' topic.id %}" method='post'>
         {% csrf_token %}
         {{ form.as_p }}
-        <button name='submit'>Add reply</button>
+        <button style="background-color:#FED8B4; -webkit-text-fill-color: #880202" name='submit'>Add reply</button>
     </form>
 
 {% endblock content %}

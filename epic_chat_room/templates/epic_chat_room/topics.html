@@ -8,8 +8,10 @@
 
   <ul>
     {% for topic in topics %}
-      <li><h3>
-        <a href="{% url 'epic_chat_room:topic' topic.id %}">{{ topic }}</a>
+      <li><h3 style="-webkit-text-fill-color: #880202">
+        <a href="{% url 'epic_chat_room:topic' topic.id %}" 
+        >{{ topic }}
+        </a>
         <p style="font-size:medium">{{topic.owner}}</p>
       </h3></li>
     {% empty %}
@@ -17,5 +19,5 @@
     {% endfor %}
   </ul>
 
-  <h3><a href="{% url 'epic_chat_room:new_topic' %}">Add a new topic</a></h3>
+  <h3 style="-webkit-text-fill-color: #880202"><a href="{% url 'epic_chat_room:new_topic' %}">Add a new topic</a></h3>
 {% endblock content %}

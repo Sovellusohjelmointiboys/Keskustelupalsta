@@ -6,7 +6,7 @@
     <form action="{% url 'epic_chat_room:new_topic' %}" method='post'>
         {% csrf_token %}
         {{ form.as_p }}
-        <button name="submit">Add topic</button>
+        <button style="background-color:#FED8B4; -webkit-text-fill-color: #880202" name="submit">Add topic</button>
     </form>
 
 {% endblock content %}
