@@ -4,8 +4,9 @@ from .models import Topic, Reply
 class TopicForm(forms.ModelForm):
     class Meta:
         model = Topic
-        fields = ['title']
-        labels = {'title': ''}
+        fields = ['title', 'text']
+        labels = {'title': 'title'}
+        widgets = {'text': forms.Textarea(attrs={'cols': 80})}
 
 class ReplyForm(forms.ModelForm):
     class Meta:
